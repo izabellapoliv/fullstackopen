@@ -3,22 +3,37 @@ import './App.css';
 
 const Title = ({ text }) => <h3>{text}</h3>
 const Button = ({ title, onClick }) => <button onClick={onClick}>{title}</button>
+const Statistic = ({ name, value }) => <tr><td>{name}</td><td>{value}</td></tr>
 const Statistics = ({ good, neutral, bad }) => {
   const getCollectedTotal = () => good + neutral + bad
   const getAvg = (totalFeedback) => totalFeedback === 0 ? totalFeedback : ((good * 1) + (bad * -1)) / totalFeedback
   const getGoodPercent = (totalFeedback) => totalFeedback === 0 ? totalFeedback : good * 100 / totalFeedback
 
   const totalFeedback = getCollectedTotal()
+  if (totalFeedback === 0) {
+    return (
+      <div>Give us some feedback :)</div>
+    )
+  }
+
   return (
-    <div>
-      <p>Good: {good}</p>
-      <p>Neutral: {neutral}</p>
-      <p>Bad: {bad}</p>
+    <>
+      <table>
+        <tbody>
+          <Statistic name="Good" value={good} />
+          <Statistic name="Neutral" value={neutral} />
+          <Statistic name="Bad" value={bad} />
+        </tbody>
+      </table>
       <hr />
-      <p>Total: {totalFeedback}</p>
-      <p>Average: {getAvg(totalFeedback)}</p>
-      <p>Positive: {getGoodPercent(totalFeedback)}%</p>
-    </div>
+      <table>
+        <tbody>
+          <Statistic name="Total" value={totalFeedback} />
+          <Statistic name="Average" value={getAvg(totalFeedback)} />
+          <Statistic name="Positive" value={getGoodPercent(totalFeedback) + '%'} />
+        </tbody>
+      </table>
+    </>
   )
 }
 
