@@ -3,25 +3,21 @@ import './index.css';
 import logo from './logo.svg';
 import './App.css';
 
+const Display = ({ curTime }) => <p>{curTime.toLocaleString()}</p>
+const Button = ({ title, onClick }) => <button onClick={onClick} className="App-link">{title}</button>
+
 const App = () => {
     const [curTime, refreshTime] = useState(new Date())
-
-    const setToDate = (newDate) => () => refreshTime(newDate)
+    const setToDate = (newDate) => () => typeof newDate == 'string' ? refreshTime(new Date(newDate)) : refreshTime(new Date())
 
     return (
         <div className="App">
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
-                <p>{curTime.toLocaleString()}</p>
-                <button onClick={setToDate(new Date())}
-                    className="App-link">
-                    Refresh time
-                </button>
+                <Display curTime={curTime} />
+                <Button title="Refresh time" onClick={setToDate()} />
                 <br />
-                <button onClick={setToDate(new Date('2019-02-18 02:40:37'))}
-                    className="App-link">
-                    Change date
-                </button>
+                <Button title="Change date" onClick={setToDate('2019-02-18 02:40:37')} />
             </header>
         </div>
     );
