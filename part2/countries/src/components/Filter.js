@@ -2,7 +2,7 @@ import React from 'react';
 
 const Filter = ({ current, onChange }) => {
     return (
-        <div>Filter countries: <input value={current} onChange={onChange} /></div>
+        <div>Search countries: <input value={current} onChange={onChange} /></div>
     )
 }
 
