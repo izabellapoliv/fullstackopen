@@ -28,7 +28,7 @@ const Languages = ({ languages }) => {
 const Details = ({ country, onChangeCountry }) => {
     const [weather, setWeather] = useState(null)
     useEffect(() => {
-        const weatherApiKey = 'c234503568b2c7324db959a61e4f5ee4'
+        const weatherApiKey = '[MY_KEY]'
         const endpoint = 'http://api.weatherstack.com/current'
             + '?access_key=' + weatherApiKey
             + '&query=' + country.capital
